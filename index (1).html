@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estilos de Influencia — MBA IEN·UPM</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f8;color:#1a1a2e;font-size:14px}
+.wrap{max-width:840px;margin:0 auto;padding:1.5rem 1rem 3rem}
+.header{background:linear-gradient(135deg,#1a3a6b,#2a5298);color:#fff;padding:1.4rem 1.8rem;border-radius:10px;margin-bottom:1.4rem;box-shadow:0 2px 12px rgba(26,58,107,.25)}
+.header h1{font-size:20px;font-weight:700;letter-spacing:.01em}
+.header p{font-size:11px;opacity:.75;margin-top:5px}
+.name-box{background:#fff;border:1px solid #dde3f0;border-radius:8px;padding:12px 16px;margin-bottom:1.2rem;display:flex;align-items:center;gap:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.name-box label{font-size:12px;font-weight:700;color:#1a3a6b;white-space:nowrap;min-width:140px}
+.name-box input{flex:1;border:1.5px solid #ccd3e8;border-radius:6px;padding:8px 12px;font-size:14px;font-family:inherit;color:#1a1a2e;outline:none;transition:border .15s}
+.name-box input:focus{border-color:#1a3a6b;box-shadow:0 0 0 3px rgba(26,58,107,.1)}
+.scale-box{background:#fff;border:1px solid #dde3f0;border-radius:8px;padding:10px 14px;margin-bottom:1rem;display:flex;gap:8px;flex-wrap:wrap;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.scale-box strong{font-size:11px;color:#1a3a6b;margin-right:4px}
+.scale-item{font-size:11px;color:#555;background:#f0f2f8;border-radius:4px;padding:3px 9px}
+.scale-item b{color:#1a3a6b;font-weight:700}
+.prog-wrap{background:#dde3f0;border-radius:4px;height:7px;margin-bottom:4px;overflow:hidden}
+.prog-fill{height:7px;border-radius:4px;background:#1a3a6b;transition:width .3s}
+.prog-label{font-size:11px;color:#777;margin-bottom:1.4rem}
+.group-title{font-size:10px;font-weight:700;color:#1a3a6b;background:#e4eaf7;padding:5px 12px;border-radius:4px;margin:1.3rem 0 .6rem;text-transform:uppercase;letter-spacing:.08em;border-left:3px solid #1a3a6b}
+.q-row{display:flex;align-items:flex-start;gap:10px;padding:9px 4px;border-bottom:1px solid #eaeef8;transition:background .1s}
+.q-row:hover{background:#f8f9fd}
+.q-num{font-size:11px;font-weight:700;color:#1a3a6b;min-width:24px;padding-top:3px}
+.q-text{font-size:13px;flex:1;line-height:1.55;color:#2c2c3e}
+.q-opts{display:flex;gap:5px;flex-shrink:0;align-items:center}
+.q-opts button{width:34px;height:34px;border-radius:50%;border:2px solid #ccd3e8;background:#fff;font-size:12px;font-weight:700;color:#888;cursor:pointer;transition:all .12s}
+.q-opts button:hover{border-color:#1a3a6b;color:#1a3a6b;background:#e4eaf7}
+.q-opts button.sel{background:#1a3a6b;border-color:#1a3a6b;color:#fff;transform:scale(1.08)}
+.btn-calc{display:block;width:100%;margin:2rem 0 .5rem;padding:14px;background:#1a3a6b;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.02em;box-shadow:0 2px 8px rgba(26,58,107,.3);transition:background .15s}
+.btn-calc:hover{background:#142d56}
+.warn{color:#c0392b;font-size:12px;padding:6px 0;display:none;font-weight:600}
+.result-section{display:none;margin-top:2rem}
+.result-section.show{display:block}
+.r-header{background:#fff;border:1px solid #dde3f0;border-radius:10px;padding:1rem 1.4rem;margin-bottom:1rem;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+.r-title{font-size:18px;font-weight:700;color:#1a3a6b}
+.r-sub{font-size:11px;color:#888;margin-top:3px}
+.style-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem}
+.style-card{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid #dde3f0;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.style-card.push{border-top:4px solid #1a3a6b}
+.style-card.pull{border-top:4px solid #1e7a4a}
+.style-card.away{border-top:4px solid #c0392b}
+.sc-label{font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.sc-num{font-size:30px;font-weight:700;line-height:1}
+.push .sc-num{color:#1a3a6b}
+.pull .sc-num{color:#1e7a4a}
+.away .sc-num{color:#c0392b}
+.sc-max{font-size:11px;color:#bbb}
+.sc-pct{font-size:12px;color:#888;margin-top:2px}
+.sc-bar{height:5px;background:#eaecf5;border-radius:3px;margin-top:8px;overflow:hidden}
+.sc-bar-fill{height:5px;border-radius:3px;transition:width .6s}
+.push .sc-bar-fill{background:#1a3a6b}
+.pull .sc-bar-fill{background:#1e7a4a}
+.away .sc-bar-fill{background:#c0392b}
+.chart-card{background:#fff;border:1px solid #dde3f0;border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.chart-legend{display:flex;gap:16px;margin-bottom:10px;font-size:11px;color:#666;flex-wrap:wrap}
+.chart-legend span{display:flex;align-items:center;gap:5px;font-weight:600}
+.dot{width:11px;height:11px;border-radius:2px;display:inline-block}
+.analysis-card{background:#fff;border:1px solid #dde3f0;border-radius:10px;padding:1rem 1.4rem;margin-bottom:1rem;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.analysis-card h3{font-size:13px;font-weight:700;color:#1a3a6b;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #eaeef8}
+.analysis-card p{font-size:12px;color:#444;line-height:1.65;margin-bottom:7px}
+.analysis-card p:last-child{margin-bottom:0}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:3px;font-weight:700;margin-right:5px;vertical-align:middle}
+.tp{background:#e4eaf7;color:#1a3a6b}
+.tq{background:#e4f4eb;color:#1e7a4a}
+.ta{background:#fdecea;color:#c0392b}
+.highlight-box{margin-top:10px;padding:10px 14px;background:#f4f6fd;border-left:3px solid #1a3a6b;border-radius:0 6px 6px 0;font-size:12px;color:#2c2c3e;line-height:1.6}
+@media(max-width:540px){
+  .style-cards{grid-template-columns:1fr}
+  .q-row{flex-wrap:wrap}
+  .q-opts{margin-top:6px;margin-left:24px}
+  .name-box{flex-direction:column;align-items:flex-start}
+  .name-box label{min-width:unset}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>Cuestionario · Estilos de Influencia</h1>
+  <p>Negociación Profesional en Entornos Complejos &nbsp;·&nbsp; Prof. Fernando García Picó &nbsp;·&nbsp; IEN · UPM · MBA Internacional 2025-2026</p>
+</div>
+
+<div class="name-box">
+  <label for="alumno-nombre">Nombre del alumno:</label>
+  <input type="text" id="alumno-nombre" placeholder="Escribe tu nombre completo…" maxlength="80" autocomplete="name">
+</div>
+
+<div class="scale-box">
+  <strong>Escala:</strong>
+  <span class="scale-item"><b>1</b> Raramente</span>
+  <span class="scale-item"><b>2</b> Ocasionalmente</span>
+  <span class="scale-item"><b>3</b> A veces</span>
+  <span class="scale-item"><b>4</b> Bastante frecuente</span>
+  <span class="scale-item"><b>5</b> Casi siempre</span>
+</div>
+
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+<div class="prog-label" id="prog-label">0 / 72 respondidas</div>
+
+<div id="questions"></div>
+
+<p class="warn" id="warn"></p>
+<button class="btn-calc" onclick="calcular()">▶ Calcular mi Perfil de Influencia</button>
+
+<div class="result-section" id="results">
+  <div class="r-header">
+    <div class="r-title" id="r-title">Tu Perfil de Influencia</div>
+    <div class="r-sub">Puntuación máxima: 30 por dimensión (6 ítems × 5 puntos)</div>
+  </div>
+  <div class="style-cards" id="style-cards"></div>
+  <div class="chart-card">
+    <div class="chart-legend">
+      <span><span class="dot" style="background:#1a3a6b"></span>Empujar / Push</span>
+      <span><span class="dot" style="background:#1e7a4a"></span>Tirar / Pull</span>
+      <span><span class="dot" style="background:#c0392b"></span>Distanciarse</span>
+    </div>
+    <canvas id="profileChart" height="300"></canvas>
+  </div>
+  <div id="analysis-area"></div>
+</div>
+
+</div>
+
+<script>
+const QS=[
+"Realizo sugerencias y propuestas cualitativamente valiosas.",
+"Presento argumentos sólidos en temas de mi interés para favorecer mis propuestas.",
+"Manifiesto rapidez en demostrar mis deseos y mi voluntad a los demás.",
+"Corrijo los errores de los demás.",
+"Ejerzo presión en las personas para conseguir los resultados.",
+"Solicito activamente opinión y sugerencias de los demás.",
+"Escucho atentamente cuando los demás discrepan de mí.",
+"Procuro hacer accesible la información para los demás.",
+"Motivo a los demás a percibir lo positivo de una situación y las oportunidades asociadas.",
+"Ayudo a los demás a visualizar los objetivos y los valores que existan en común.",
+"En entornos muy exigentes o estresantes, me tomo tiempo para pensar y planificar.",
+"Modifico mi posición para evitar el riesgo de un conflicto o confrontación.",
+"Promuevo iniciativas cuando considero que tienen valor, pese a su posible impopularidad.",
+"Apoyo aquello que resulta lógico y razonable.",
+"Trato de dar satisfacción a aquello que razonablemente expresan los demás.",
+"Empleo expresiones como: razonable, generoso, objetivo, justo… al negociar.",
+"Consigo que otros me presten apoyo ofreciéndoles mi reconocimiento.",
+"Busco la oportunidad de reconocer el mérito ajeno y su contribución.",
+"Verifico mi entendimiento de lo que otros expresan.",
+"Soy abierto con la información, en contraposición a la opacidad.",
+"Irradio un nivel de optimismo y entusiasmo contagioso.",
+"Muestro a los demás cómo conseguir más mediante la colaboración y el trabajo conjunto.",
+"En caso de discusión improductiva, doy marcha atrás e intento modificar la situación.",
+"Permanezco a distancia cuando otros se implican en discusiones argumentales.",
+"Persuado con mis argumentaciones y capacidad expositiva.",
+"Defiendo mis ideas y propuestas enérgicamente.",
+"Comunico a las personas los parámetros por los cuales les puedo juzgar o valorar.",
+"Cuando las personas no cumplen con lo esperado, se lo digo de forma clara y directa.",
+"Obtengo de los demás lo que quiero a través del intercambio de favores.",
+"Destaco las ventajas que otros pueden obtener si actúan según mi propuesta.",
+"Invito a los demás a que trabajen conmigo en la solución de los problemas.",
+"Pido a los demás que me expliquen sus preocupaciones y sus necesidades.",
+"Visualizo y describo los resultados positivos que se pueden obtener.",
+"Animo a los demás a imaginar lo que podrían conseguir en el futuro.",
+"Me retiro cuando se produce una discusión o desacuerdo.",
+"Rechazo implicarme en situaciones que puedan generar un conflicto.",
+"Expreso con claridad mis expectativas sobre el resultado de nuestras interacciones.",
+"Expreso claramente mis objetivos y propósitos en las negociaciones.",
+"Indico con precisión lo que espero que los demás hagan.",
+"Señalo las consecuencias negativas si no se logran los resultados esperados.",
+"Hago concesiones a cambio de conseguir lo que quiero.",
+"Utilizo estrategias de ganancia mutua para lograr mis objetivos.",
+"Aliento a los demás a que hablen de sus necesidades e intereses.",
+"Facilito que los demás se expresen libremente.",
+"Comparto mis esperanzas y mis aspiraciones con los demás.",
+"Expreso mis valores y los principios que guían mis acciones.",
+"Busco el momento adecuado para retirarme de una situación conflictiva.",
+"Cedo en mis posiciones para evitar fricciones innecesarias.",
+"Utilizo datos y hechos para respaldar mis argumentos.",
+"Busco la manera de que todos salgamos ganando en una negociación.",
+"Intento involucrar a los demás en la consecución de metas compartidas.",
+"Facilito el diálogo para descubrir qué es lo que realmente quieren los demás.",
+"Intercambio favores en orden a conseguir que las cosas se hagan.",
+"Expreso preocupación y empatía cuando los demás tienen dificultades.",
+"Escucho no solo lo que los demás me dicen, sino lo que sienten.",
+"Soy abierto en lo relativo a mis motivaciones e intenciones.",
+"Tengo una clara imagen de los resultados finales deseables para cada situación relevante.",
+"Busco áreas de acuerdo cuando surge una discrepancia.",
+"Soy paciente y frío en situaciones de tensión.",
+"Evito hablar sobre temas o asuntos controvertidos.",
+"Presento con vigor mis propias ideas.",
+"Utilizo con efectividad anécdotas y humor para dejar las cosas claras.",
+"Afirmo con fortaleza mis propias expectativas y exigencias para que no sean ignoradas.",
+"Doy respuesta a los demás sobre lo que dicen o hacen, para facilitar información útil.",
+"Regateo para alcanzar mis objetivos.",
+"Muestro respeto por los demás y sus puntos de vista, incluso cuando discrepamos.",
+"Otorgo a los demás el tiempo y la atención necesarios para que expresen sus puntos de vista.",
+"Pido ayuda.",
+"Muestro confianza en los demás haciéndoles sentir más seguros y competentes.",
+"Genero un sentimiento de que 'estamos juntos en esto'.",
+"Sugiero soluciones de compromiso para resolver bloqueos o desacuerdos.",
+"Suavizo los desacuerdos para minimizar las controversias."
+];
+
+const GROUPS=[
+  {label:"PUSH · 1 — Proponer / Persuadir",items:[0,12,24,36,48,60],style:"push"},
+  {label:"PUSH · 2 — Razonar",items:[1,13,25,37,49,61],style:"push"},
+  {label:"PUSH · 3 — Establecer / Afirmar",items:[2,14,26,38,50,62],style:"push"},
+  {label:"PUSH · 4 — Evaluar / Presión",items:[3,15,27,39,51,63],style:"push"},
+  {label:"PULL · 5 — Aplicar / Incentivos",items:[4,16,28,40,52,64],style:"pull"},
+  {label:"PULL · 6 — Implicarse / Apoyar",items:[5,17,29,41,53,65],style:"pull"},
+  {label:"PULL · 7 — Escuchar",items:[6,18,30,42,54,66],style:"pull"},
+  {label:"PULL · 8 — Abrirse / Transparencia",items:[7,19,31,43,55,67],style:"pull"},
+  {label:"PULL · 9 — Crear / Visión",items:[8,20,32,44,56,68],style:"pull"},
+  {label:"PULL · 10 — Encontrar puntos comunes",items:[9,21,33,45,57,69],style:"pull"},
+  {label:"DISTANCIARSE · 11 — Abandonar",items:[10,22,34,46,58,70],style:"away"},
+  {label:"DISTANCIARSE · 12 — Evitar / Eludir",items:[11,23,35,47,59,71],style:"away"}
+];
+
+const DIM_LABELS=["PROPONER","RAZONAR","ESTABLECER","EVALUAR","APLICAR","IMPLICARSE","ESCUCHAR","ABRIRSE","CREAR","ENCONTRAR","ABANDONAR","EVITAR"];
+const DIM_COLORS=["#1a3a6b","#1a3a6b","#1a3a6b","#1a3a6b","#1e7a4a","#1e7a4a","#1e7a4a","#1e7a4a","#1e7a4a","#1e7a4a","#c0392b","#c0392b"];
+
+const answers=new Array(72).fill(0);
+
+function buildQuestions(){
+  const c=document.getElementById('questions');
+  GROUPS.forEach(g=>{
+    const gt=document.createElement('div');
+    gt.className='group-title';
+    gt.textContent=g.label;
+    c.appendChild(gt);
+    g.items.forEach(qi=>{
+      const row=document.createElement('div');
+      row.className='q-row';
+      const btns=[1,2,3,4,5].map(v=>`<button id="b-${qi}-${v}" onclick="sel(${qi},${v})">${v}</button>`).join('');
+      row.innerHTML=`<span class="q-num">${qi+1}</span><span class="q-text">${QS[qi]}</span><div class="q-opts">${btns}</div>`;
+      c.appendChild(row);
+    });
+  });
+}
+
+function sel(qi,val){
+  answers[qi]=val;
+  for(let v=1;v<=5;v++) document.getElementById(`b-${qi}-${v}`).classList.toggle('sel',v===val);
+  const done=answers.filter(a=>a>0).length;
+  document.getElementById('prog').style.width=(done/72*100)+'%';
+  document.getElementById('prog-label').textContent=`${done} / 72 respondidas`;
+}
+
+function drawChart(scores){
+  const canvas=document.getElementById('profileChart');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.offsetWidth||780;
+  canvas.width=W;
+  canvas.height=300;
+  const n=scores.length;
+  const padL=42,padR=16,padT=16,padB=52;
+  const chartW=W-padL-padR;
+  const chartH=300-padT-padB;
+  const barW=Math.floor(chartW/n*0.62);
+  const gap=(chartW/n-barW)/2;
+  const maxVal=30;
+  ctx.clearRect(0,0,W,300);
+
+  // Grid lines
+  for(let i=0;i<=6;i++){
+    const y=padT+chartH-i*(chartH/6);
+    ctx.strokeStyle='rgba(0,0,0,0.07)';
+    ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(padL+chartW,y);ctx.stroke();
+    ctx.fillStyle='#999';ctx.font='10px Segoe UI,system-ui,sans-serif';
+    ctx.textAlign='right';ctx.fillText(i*5,padL-5,y+3.5);
+  }
+
+  // Bars
+  scores.forEach((s,i)=>{
+    const x=padL+i*(chartW/n)+gap;
+    const h=(s/maxVal)*chartH;
+    const y=padT+chartH-h;
+    ctx.fillStyle=DIM_COLORS[i];
+    ctx.beginPath();
+    ctx.roundRect(x,y,barW,h,3);
+    ctx.fill();
+
+    // value on top
+    ctx.fillStyle=DIM_COLORS[i];
+    ctx.font='bold 10px Segoe UI,system-ui,sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText(s,x+barW/2,y-4);
+
+    // label bottom
+    ctx.fillStyle='#555';
+    ctx.font='8.5px Segoe UI,system-ui,sans-serif';
+    ctx.save();
+    ctx.translate(x+barW/2,padT+chartH+8);
+    ctx.rotate(-Math.PI/4);
+    ctx.textAlign='right';
+    ctx.fillText(DIM_LABELS[i],0,0);
+    ctx.restore();
+  });
+}
+
+function calcular(){
+  const missing=answers.filter(a=>a===0).length;
+  const w=document.getElementById('warn');
+  if(missing>0){w.style.display='block';w.textContent=`⚠ Faltan ${missing} preguntas por responder.`;return;}
+  w.style.display='none';
+
+  const scores=GROUPS.map(g=>g.items.reduce((s,qi)=>s+answers[qi],0));
+  const pushScore=scores.slice(0,4).reduce((a,b)=>a+b,0);
+  const pullScore=scores.slice(4,10).reduce((a,b)=>a+b,0);
+  const awayScore=scores.slice(10,12).reduce((a,b)=>a+b,0);
+  const pushMax=120,pullMax=180,awayMax=60;
+
+  const nombre=(document.getElementById('alumno-nombre').value||'').trim();
+  document.getElementById('r-title').textContent=nombre?`Perfil de Influencia · ${nombre}`:'Tu Perfil de Influencia';
+
+  // Tarjetas
+  const sc=document.getElementById('style-cards');
+  sc.innerHTML=[
+    {l:'Empujar / Push',s:pushScore,m:pushMax,k:'push'},
+    {l:'Tirar / Pull',s:pullScore,m:pullMax,k:'pull'},
+    {l:'Distanciarse',s:awayScore,m:awayMax,k:'away'}
+  ].map(x=>{
+    const p=Math.round(x.s/x.m*100);
+    return `<div class="style-card ${x.k}">
+      <div class="sc-label">${x.l}</div>
+      <div><span class="sc-num">${x.s}</span><span class="sc-max"> / ${x.m}</span></div>
+      <div class="sc-pct">${p}% del máximo</div>
+      <div class="sc-bar"><div class="sc-bar-fill" style="width:${p}%"></div></div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('results').classList.add('show');
+
+  // Dibujar gráfico después de que el DOM sea visible
+  requestAnimationFrame(()=>drawChart(scores));
+
+  // Análisis
+  const pushPct=pushScore/pushMax*100;
+  const pullPct=pullScore/pullMax*100;
+  const awayPct=awayScore/awayMax*100;
+  const maxDim=scores.indexOf(Math.max(...scores));
+  let rec='';
+  if(awayPct>45) rec='Tu nivel de distanciamiento es elevado. Evitar el conflicto debilita tu poder negociador y reduce credibilidad. Trabaja activamente los estilos Pull — especialmente escucha activa y creación de visión compartida — para sustituir la retirada por colaboración.';
+  else if(pushPct>pullPct+15) rec='Estilo predominantemente Push: asertivo, directo, orientado a resultados. Fortaleza clara en negociaciones distributivas. Riesgo: perder acuerdos integradores por falta de escucha activa. Incorpora más estrategias Pull para descubrir intereses no declarados de la contraparte.';
+  else if(pullPct>pushPct+15) rec='Estilo predominantemente Pull: empático, colaborativo, excelente escucha. Fortaleza en negociaciones complejas y relaciones a largo plazo. Riesgo: ceder en exceso en situaciones distributivas. Fortalece el Push para defender posiciones clave sin perder la relación.';
+  else rec='Perfil equilibrado Push–Pull. Es un activo estratégico valioso: puedes adaptar tu estilo al contexto de cada negociación. Consolida el uso situacional consciente y trabaja para minimizar el Distanciamiento cuando aparezca.';
+
+  document.getElementById('analysis-area').innerHTML=`
+  <div class="analysis-card">
+    <h3>Diagnóstico estratégico del perfil</h3>
+    <p><strong>Dimensión dominante:</strong> ${DIM_LABELS[maxDim]} — ${scores[maxDim]} / 30</p>
+    <p><strong>Push total:</strong> ${pushScore}/${pushMax} (${Math.round(pushPct)}%) &nbsp;·&nbsp; <strong>Pull total:</strong> ${pullScore}/${pullMax} (${Math.round(pullPct)}%) &nbsp;·&nbsp; <strong>Distanciarse:</strong> ${awayScore}/${awayMax} (${Math.round(awayPct)}%)</p>
+    <div class="highlight-box">${rec}</div>
+  </div>
+  <div class="analysis-card">
+    <h3>Marco conceptual — Modelo García Picó / IEN-UPM</h3>
+    <p><span class="tag tp">PUSH · Empujar</span> Imponer energía hacia la contraparte: proponer, razonar, establecer expectativas, presionar. Alta asertividad. Eficaz en posiciones de poder o cuando el tiempo apremia.</p>
+    <p><span class="tag tq">PULL · Tirar</span> Atraer hacia uno mismo: escuchar, abrir información, crear visión compartida, vincular intereses. Alta empatía estratégica. Eficaz en negociaciones complejas y relaciones de largo plazo.</p>
+    <p><span class="tag ta">DISTANCIARSE</span> Retirarse del conflicto: abandonar o eludir. Útil tácticamente para ganar tiempo o enfriar. Peligroso como estilo dominante — señal de BATNA débil percibido.</p>
+  </div>`;
+
+  setTimeout(()=>document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'}),120);
+}
+
+window.addEventListener('DOMContentLoaded', buildQuestions);
+</script>
+</body>
+</html>
